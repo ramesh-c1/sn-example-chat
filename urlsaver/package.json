@@ -1,5 +1,5 @@
 {
-  "name": "slnode-readability-example",
+  "name": "slnode-urlsaver-example",
   "version": "0.0.0",
   "description": "An example to showcase how to use `express` routes with the `request` and `Q` modules packaged with SLNode.",
   "main": "index.js",

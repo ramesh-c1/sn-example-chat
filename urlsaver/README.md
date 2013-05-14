@@ -1,6 +1,6 @@
-# SLNode Readability Example
+# SLNode URL Saver Example
 
-An example to showcase how to use `express` routes with the `request` and `Q` modules packaged with SLNode.
+This example app is shows how to use `express` routes with the `Request` and `Q` modules packaged with SLNode. The app presents a RESTful API to create and then retrieve content from named URLs.
 
 ## Running the Example
 
@@ -12,7 +12,7 @@ Once the example is running, the following resources are available:
 
 ## PUT /ID?url=URL
 
-Creates a new document at /ID, loaded from URL.
+Creates a new document at /ID, based on data from URL.
 
 ## GET /ID
 
