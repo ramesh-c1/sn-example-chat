@@ -1,0 +1,17 @@
+{
+  "name": "slnode-readability-example",
+  "version": "0.0.0",
+  "description": "An example to showcase how to use `express` routes with the `request` and `Q` modules packaged with SLNode.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Michael Schoonmaker <michael@strongloop.com>",
+  "dependencies": {
+    "express": "~3.2.4",
+    "q": "~0.9.3",
+    "request": "~2.21.0"
+  },
+  "license": "Commercial"
+}

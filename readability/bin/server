@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+var server = require('../lib/server').createServer({
+  port: process.argv[2]
+});
+
+// Disable Q's long stack traces for performance.
+require('q').longStackJumpLimit = 0;
+
+server.start(function (err) {
+  if (err) {
+    console.error('Failed to start with:', err.message || err);
+    process.exit(1);
+  }
+
+  console.log('Listening on port ' + server.port + '...');
+});
