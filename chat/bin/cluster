@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 var cluster = require('cluster');
-var clustermq = require('../../../slnode-clustermq');
+var slmq = require('sl-mq');
 var WorkerServer = require('../lib/worker');
 
 var port = process.argv[2] || 1337;
-var connection = clustermq.create({
+var connection = slmq.create({
   provider: 'native'
 });
 
@@ -17,7 +17,7 @@ if (cluster.isMaster) {
   });
 } else {
   var server = WorkerServer.createServer({
-    mq: connection
+    mq: connection.open()
   });
 
   server.start(function (err) {

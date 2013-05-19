@@ -1,7 +1,7 @@
 //
 // # WorkerServer
 //
-// A more advanced version of the SimpleServer that uses ClusterMQ for scalability.
+// A more advanced version of the SimpleServer that uses Strongloop's SL-MQ for scalability.
 //
 var http = require('http');
 var path = require('path');
@@ -10,7 +10,7 @@ var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
 
-var clustermq = require('../../../slnode-clustermq');
+var slmq = require('sl-mq');
 
 //
 // ## WorkerServer `WorkerServer(obj)`
@@ -30,10 +30,10 @@ function WorkerServer(obj) {
   this.server = http.createServer(this.router);
   this.io = socketio.listen(this.server);
 
-  this.mq = obj.mq || clustermq.create({
+  this.mq = obj.mq || slmq.create({
     provider: 'native'
-  });
-  this.publish = this.mq.createPublishQueue('chat');
+  }).open();
+  this.publish = this.mq.createPubQueue('chat');
 
   this.port = obj.port || 1337;
   this.messages = [];
@@ -154,7 +154,7 @@ function _initSocketIo() {
           text: text
         };
 
-        self.publish.publish('message', data);
+        self.publish.publish(data, 'message');
         // self.broadcast('message', data);
         self.messages.push(data);
       });
@@ -181,7 +181,7 @@ WorkerServer.prototype._initClusterMq = _initClusterMq;
 function _initClusterMq() {
   var self = this;
 
-  self.mq.createSubscribeQueue('chat').subscribe('message', function (msg) {
+  self.mq.createSubQueue('chat').subscribe('message', function (msg) {
     self.broadcast('message', msg);
   });
 
