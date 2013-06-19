@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+require('strong-agent').profile(
+  process.env.NODEFLY_KEY,
+  ['com.strongloop.example.chat.cluster']
+);
+
 var cluster = require('cluster');
 var os = require('os');
 

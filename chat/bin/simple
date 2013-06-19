@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+require('strong-agent').profile(
+  process.env.NODEFLY_KEY,
+  ['com.strongloop.example.chat.simple']
+);
+
 var SimpleServer = require('../lib/simple');
 var server = SimpleServer.createServer({
   port: process.argv[2]
