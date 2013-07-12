@@ -1,7 +1,7 @@
 //
 // # WorkerServer
 //
-// A more advanced version of the SimpleServer that uses Strongloop's SL-MQ for scalability.
+// A more advanced version of the SimpleServer that uses clustering for scalability.
 //
 var http = require('http');
 var path = require('path');
@@ -10,7 +10,7 @@ var async = require('async');
 var socketio = require('socket.io');
 var express = require('express');
 
-var slmq = require('sl-mq');
+var mq = require('strong-mq');
 
 //
 // ## WorkerServer `WorkerServer(obj)`
@@ -30,7 +30,7 @@ function WorkerServer(obj) {
   this.server = http.createServer(this.router);
   this.io = socketio.listen(this.server);
 
-  this.mq = obj.mq || slmq.create({
+  this.mq = obj.mq || mq.create({
     provider: 'native'
   }).open();
   this.publish = this.mq.createPubQueue('chat');

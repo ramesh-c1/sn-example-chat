@@ -12,7 +12,7 @@
     "async": "~0.2.8",
     "express": "~3.2.4",
     "socket.io": "~0.9.14",
-    "sl-mq": "~0.0.1"
+    "strong-mq": "~0.0.3"
   },
   "license": "Commercial"
 }
