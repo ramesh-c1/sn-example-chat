@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 var cluster = require('cluster');
-var slmq = require('sl-mq');
+var mq = require('strong-mq');
 var WorkerServer = require('../lib/worker');
 
 var port = process.argv[2] || 1337;
-var connection = slmq.create({
+var connection = mq.create({
   provider: 'native'
 });
 
