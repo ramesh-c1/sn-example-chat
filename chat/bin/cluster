@@ -1,20 +1,25 @@
 #!/usr/bin/env node
 var cluster = require('cluster');
-var mq = require('strong-mq');
+var os = require('os');
+
+var control = require('strong-cluster-control');
 var io = require('socket.io');
+var mq = require('strong-mq');
+
 var ClusterStore = require('strong-cluster-socket.io-store')(io);
 var WorkerServer = require('../lib/worker');
 
 var port = process.argv[2];
 
+control.start({
+  size: control.CPUS
+});
+
 var connection = mq.create({
   provider: 'native'
 });
 
-if (cluster.isMaster) {
-  cluster.fork();
-  cluster.fork();
-} else {
+if (cluster.isWorker) {
   var server = WorkerServer.createServer({
     port: port,
     mq: connection.open(),
