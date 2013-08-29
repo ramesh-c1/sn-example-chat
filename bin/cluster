@@ -1,42 +1,13 @@
 #!/usr/bin/env node
 require('strong-agent').profile(
   process.env.NODEFLY_KEY,
-  ['com.strongloop.example.chat.cluster']
+  ['com.strongloop.example.chat']
 );
 
-var cluster = require('cluster');
-var os = require('os');
+// Default clustering to on, it can still be over-ridden by config, env, or
+// command line
+var options = {
+  size: 'default'
+};
 
-var control = require('strong-cluster-control');
-var io = require('socket.io');
-var mq = require('strong-mq');
-
-var ClusterStore = require('strong-cluster-socket.io-store')(io);
-var WorkerServer = require('../lib/worker');
-
-var port = process.argv[2];
-
-control.start({
-  size: control.CPUS
-});
-
-var connection = mq.create({
-  provider: 'native'
-});
-
-if (cluster.isWorker) {
-  var server = WorkerServer.createServer({
-    port: port,
-    mq: connection.open(),
-    ioStore: new ClusterStore()
-  });
-
-  server.start(function (err) {
-    if (err) {
-      console.error('Worker ' + process.pid + ' failed to start with:', err.message || err);
-      process.exit(1);
-    }
-
-    console.log('Worker ' + process.pid + ' listening on port ' + server.port + '...');
-  });
-}
+require('../index')(options);
