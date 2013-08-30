@@ -1,7 +1,7 @@
 {
   "name": "strongnode-chat-example",
-  "version": "0.0.0",
-  "description": "A pair of examples to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
+  "version": "0.1.0",
+  "description": "StrongNode example to showcase how to use `socket.io` with an `express` server.",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
