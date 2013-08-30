@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-require('strong-agent').profile(
-  process.env.NODEFLY_KEY,
-  ['com.strongloop.example.chat']
-);
 
 // Default clustering to on, it can still be over-ridden by config, env, or
 // command line
@@ -10,4 +6,4 @@ var options = {
   size: 'default'
 };
 
-require('../index')(options);
+require('../app')(options);

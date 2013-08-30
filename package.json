@@ -1,5 +1,5 @@
 {
-  "name": "slnode-chat-example",
+  "name": "strongnode-chat-example",
   "version": "0.0.0",
   "description": "A pair of examples to showcase how to use `socket.io` with a static `express` server with `async` for control flow.",
   "main": "app.js",

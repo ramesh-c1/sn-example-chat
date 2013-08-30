@@ -1,11 +1,6 @@
 #!/usr/bin/env node
 
-require('strong-agent').profile(
-  process.env.NODEFLY_KEY,
-  ['com.strongloop.example.chat']
-);
-
 // Disable clustering, env can only only be over-ridden by command line
 process.env.cluster_size = "off";
 
-require('../index')();
+require('../app')();

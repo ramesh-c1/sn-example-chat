@@ -1,10 +1,10 @@
+require('strong-agent').profile();
+
 if (require.main === module) {
-  require('strong-agent').profile(
-    process.env.NODEFLY_KEY,
-    ['com.strongloop.example.chat']
-  );
   return run();
 }
+
+module.exports = run;
 
 function run(defaultOptions) {
   var control = require('strong-cluster-control');
@@ -57,5 +57,3 @@ function run(defaultOptions) {
     console.log(logPrefix + 'Listening on port ' + server.port + '...');
   });
 }
-
-module.exports = run;
