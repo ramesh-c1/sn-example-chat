@@ -12,7 +12,7 @@ function run(defaultOptions) {
   var port = require('optimist').argv._[0]; // optional positional argument
   var role = options.clustered || 'simple';
 
-  if(options.clustered) {
+  if (options.clustered) {
     // mq must be created in master and worker, because master brokers for the
     // workers
     var mq = require('strong-mq');
@@ -21,13 +21,13 @@ function run(defaultOptions) {
     });
 
     // cluster masters just start controller with loaded options
-    if(options.isMaster) {
+    if (options.isMaster) {
       console.log('Starting cluster controller');
       return control.start(options);
     }
   }
 
-  if(options.isWorker) {
+  if (options.isWorker) {
     // Clustered servers need more initialization, because they share state
     // through the master, or possibly through an external mq broker (not shown
     // here).
@@ -48,7 +48,7 @@ function run(defaultOptions) {
   }
   var logPrefix = role + ' ' + process.pid + ': ';
 
-  server.start(function (err) {
+  server.start(function(err) {
     if (err) {
       console.error(logPrefix + 'Failed to start with:', err.message || err);
       process.exit(1);
