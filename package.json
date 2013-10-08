@@ -1,5 +1,5 @@
 {
-  "name": "strongnode-chat-example",
+  "name": "sn-example-chat",
   "version": "0.1.0",
   "description": "StrongNode example to showcase how to use `socket.io` with an `express` server.",
   "main": "app.js",
