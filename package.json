@@ -4,13 +4,14 @@
   "description": "StrongNode example to showcase how to use `socket.io` with an `express` server.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo no tests"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/strongloop/sn-example-chat.git"
   },
   "author": "Michael Schoonmaker <michael@strongloop.com>",
+  "license": "MIT",
   "dependencies": {
     "async": "~0.2.8",
     "express": "~3.2.4",
@@ -22,5 +23,7 @@
     "rc": "~0.3.0",
     "optimist": "~0.6.0"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  }
 }
